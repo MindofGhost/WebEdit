@@ -52,18 +52,18 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <!-- <button type="button" id="submit" class="btn btn-default navbar-btn">Save</button> -->
-    <a class="navbar-brand" href="#">WebEdit</a>
-    <ul class="nav navbar-nav">
-      <li id="submit" class="active"><a href="#">Save <span class="sr-only">(current)</span></a></li>
-      <li><p class="navbar-text"><span id="save_indicator" class="glyphicon glyphicon-ok" aria-hidden="true"></span></p></li>
+    <a class="navbar-brand hidden-xs" href="#">WebEdit</a>
+    <ul class="nav navbar-nav col-xs-7">
+      <li id="submit" class="active col-xs-7"><a href="#">Save <span class="sr-only">(current)</span></a></li>
+      <li><p class="navbar-text col-xs-1"><span id="save_indicator" class="glyphicon glyphicon-ok" aria-hidden="true"></span></p></li>
     </ul>
     <!-- <div class="form-group">
 
     </div> -->
-        <form class="navbar-form navbar-right">
+        <form class="navbar-form navbar-right col-xs-6">
           <!-- <div class="form-group">
           </div> -->
-          <select data-live-search="true" class="selectpicker">
+          <select data-live-search="true" class="selectpicker" data-width="100%">
             <option>abap</option>
             <option>abc</option>
             <option>actionscript</option>
@@ -249,7 +249,7 @@
 
   function save() {
     update_indicator(2);
-    var document_text = document.getElementById("new").innerHTML;
+    var document_text = editor.getValue();
     $.post("/edit/<%= @key %>",
     {
       new: document_text
