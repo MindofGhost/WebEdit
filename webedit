@@ -9,7 +9,7 @@ from flask import Flask, render_template, request
 from flask_basicauth import BasicAuth
 app = Flask(__name__, template_folder='views',static_folder='')
 
-host = os.environ.get('ip', '127.0.0.1')
+host = os.environ.get('ip', '0.0.0.0')
 port= os.environ.get('port', '8080')
 filename = sys.argv[1]
 file_path = os.path.dirname(os.path.realpath(__file__))
@@ -24,10 +24,6 @@ if 'user' in os.environ:
     app.config['BASIC_AUTH_FORCE'] = True
 
 basic_auth = BasicAuth(app)
-def verify_password(username, password):
-    user = User.query.filter_by(username).first()
-    if user and passlib.hash.sha256_crypt.verify(password, user.password_hash):
-        return user
 
 @app.route('/')
 def main():
