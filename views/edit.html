@@ -15,7 +15,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/bootstrap-select.min.js"></script>
 
-  <title>Editing <%= @title %></title>
+  <title>Editing {{ data.title }}</title>
   <style type="text/css" media="screen">
     body {
         overflow: hidden;
@@ -209,16 +209,13 @@
         </form>
   </div>
 </nav>
-<pre id="editor">
-<%= @data %>
-</pre>
+<pre id="editor">{{ data.data }}</pre>
 
 <script src="/js/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
-    changeSyntax("<%= @mode %>");
-	  // editor.session.setMode("<%= @mode %>");
+    changeSyntax("{{ data.mode }}");
 
   // save status, 1 = saved, 0 = not saved 2 = saving
   let save_status = 1;
@@ -250,7 +247,7 @@
   function save() {
     update_indicator(2);
     var document_text = editor.getValue();
-    $.post("/edit/<%= @key %>",
+    $.post("/edit",
     {
       new: document_text
     },
